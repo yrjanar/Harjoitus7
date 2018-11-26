@@ -24,6 +24,9 @@ import java.util.List;
 public class MainActivity extends AppCompatActivity {
     private EditText nro;
     private EditText nimi;
+    private EditText hankinta;
+    private EditText painos;
+
     private ListView mAkuListView;
     private ArrayAdapter mAkuListAdapter;
 
@@ -45,6 +48,8 @@ public class MainActivity extends AppCompatActivity {
 
         nro=findViewById(R.id.editTextNumero);
         nimi=findViewById(R.id.editTextNimi);
+        hankinta=findViewById(R.id.editTextHankinta);
+        painos=findViewById(R.id.editTextPainos);
         mAkuListView = (ListView) findViewById(R.id.listView);
 
         List<Aku> kaikkiAkut=new ArrayList<>();
@@ -81,7 +86,7 @@ public class MainActivity extends AppCompatActivity {
         };
 
         //TODO KytketÃ¤Ã¤n DatabaseReference ja ChildEventListener
-mMessagesDatabaseReference.addChildEventListener(mChildEventListener);
+        mMessagesDatabaseReference.addChildEventListener(mChildEventListener);
 
     }
     public void onClick(View view) {
@@ -94,7 +99,8 @@ mMessagesDatabaseReference.addChildEventListener(mChildEventListener);
                 aku = new Aku();
                 aku.setKirjanNumero(nro.getText().toString());
                 aku.setKirjanNimi(nimi.getText().toString());
-
+                aku.setHankinta(hankinta.getText().toString());
+                aku.setPainos(painos.getText().toString());
 
                 //TODO DatabaseReferenceen tuupataan yllÃ¤ luotu aku
                 mMessagesDatabaseReference.push().setValue(aku);
@@ -111,5 +117,7 @@ mMessagesDatabaseReference.addChildEventListener(mChildEventListener);
         //tyhjennys
         nro.setText("");
         nimi.setText("");
+        painos.setText("");
+        hankinta.setText("");
     }
 }

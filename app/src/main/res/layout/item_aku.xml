@@ -26,4 +26,22 @@
         tools:layout_marginLeft="8dp"
         tools:text="Nimi" />
 
+    <TextView
+        android:id="@+id/hankintaTextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_weight="0"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        tools:layout_marginLeft="8dp"
+        tools:text="Hankinta" />
+
+    <TextView
+        android:id="@+id/painosTextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_weight="0"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        tools:layout_marginLeft="8dp"
+        tools:text="Painos" />
+
 </LinearLayout>

@@ -37,12 +37,21 @@ public class AkuArrayAdapter  extends ArrayAdapter<Aku> {
         }
         TextView numeroTextView = (TextView) convertView.findViewById(R.id.numeroTextView);
         TextView nimiTextView = (TextView) convertView.findViewById(R.id.nimiTextView);
+        TextView hankintaTextView = (TextView) convertView.findViewById(R.id.hankintaTextView);
+        TextView painosTextView = (TextView) convertView.findViewById(R.id.painosTextView);
+
         Aku taskukirja=getItem(position);
 
         numeroTextView.setVisibility(View.VISIBLE);
         numeroTextView.setText(""+taskukirja.getKirjanNumero());
         nimiTextView.setVisibility(View.VISIBLE);
-        nimiTextView.setText(taskukirja.getKirjanNimi());
+        nimiTextView.setText("" + taskukirja.getKirjanNimi());
+        hankintaTextView.setVisibility(View.VISIBLE);
+        hankintaTextView.setText("" + taskukirja.getHankinta());
+        painosTextView.setVisibility(View.VISIBLE);
+        painosTextView.setText(""+ taskukirja.getPainos());
+
+
 
         return convertView;
     }
