@@ -1,0 +1,73 @@
+{
+  "project_info": {
+    "project_number": "489964998475",
+    "firebase_url": "https://friendlychat-d71c4.firebaseio.com",
+    "project_id": "friendlychat-d71c4",
+    "storage_bucket": "friendlychat-d71c4.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:489964998475:android:ea1f6eaf16dc85fd",
+        "android_client_info": {
+          "package_name": "com.example.rauliyrjana.harjoitus7"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "489964998475-17ichl2cog013d21fvirephsle6n5osd.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDR5Y4UDfqnz0L6bySdrJ8VrO_InXeBJqk"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 1,
+          "other_platform_oauth_client": []
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:489964998475:android:4d1212c437929ce2",
+        "android_client_info": {
+          "package_name": "com.rauliyrjana.FriendlyChat"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "489964998475-17ichl2cog013d21fvirephsle6n5osd.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDR5Y4UDfqnz0L6bySdrJ8VrO_InXeBJqk"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 1,
+          "other_platform_oauth_client": []
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
