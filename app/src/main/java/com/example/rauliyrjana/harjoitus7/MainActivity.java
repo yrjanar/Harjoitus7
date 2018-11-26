@@ -41,7 +41,7 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
         //TODO Firebase ja DatabaseReference kytkennÃ¤t tehdÃ¤Ã¤n
         mFirebaseDatabase = FirebaseDatabase.getInstance();
-        mMessagesDatabaseReference = mFirebaseDatabase.getReference().child("akut");
+        mMessagesDatabaseReference = mFirebaseDatabase.getReference().child("akut"); //tässä saadaan viittaus juurenn ja lapsella akuihin
 
         nro=findViewById(R.id.editTextNumero);
         nimi=findViewById(R.id.editTextNimi);
@@ -55,7 +55,8 @@ public class MainActivity extends AppCompatActivity {
         mChildEventListener = new ChildEventListener() {
             @Override
             public void onChildAdded(DataSnapshot dataSnapshot, String s) {
-
+                Aku aku = dataSnapshot.getValue(Aku.class);
+                mAkuListAdapter.add(aku);
             }
 
             @Override
@@ -96,7 +97,7 @@ mMessagesDatabaseReference.addChildEventListener(mChildEventListener);
 
 
                 //TODO DatabaseReferenceen tuupataan yllÃ¤ luotu aku
-
+                mMessagesDatabaseReference.push().setValue(aku);
 
                 tyhjenna();
                 break;
