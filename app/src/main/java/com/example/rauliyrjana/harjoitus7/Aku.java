@@ -32,9 +32,7 @@ public class Aku {
         this.hankinta = hankinta;
     }
 
-    public String getPainos() {
-        return kirjanNumero;
-    }
+    public String getPainos() { return painos; }
     public void setPainos(String painos) {
         this.painos = painos;
     }
@@ -43,7 +41,7 @@ public class Aku {
     // Will be used by the ArrayAdapter in the ListView
     @Override
     public String toString() {
-        return kirjanNumero + ". " + kirjanNimi + ". " + hankinta + ". " + painos  ;
+        return kirjanNumero + ". " + kirjanNimi + "\n" + ". " + hankinta + ". " + painos  ;
     }
 
 }

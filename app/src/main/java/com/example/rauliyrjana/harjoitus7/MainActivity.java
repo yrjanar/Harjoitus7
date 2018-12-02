@@ -68,10 +68,10 @@ public class MainActivity extends AppCompatActivity {
         nimi=findViewById(R.id.editTextNimi);
         hankinta=findViewById(R.id.editTextHankinta);
         painos=findViewById(R.id.editTextPainos);
-        mAkuListView = (ListView) findViewById(R.id.listView);
+        mAkuListView = (ListView) findViewById(R.id.mAkulistView);
 
-        List<Aku> kaikkiAkut=new ArrayList<>();
-        mAkuListAdapter = new AkuArrayAdapter(this, R.layout.item_aku, kaikkiAkut);
+        final List<Aku> kaikkiAkut=new ArrayList<>();
+        mAkuListAdapter = new AkuArrayAdapter(this, R.layout.activity_main, kaikkiAkut);
         mAkuListView.setAdapter(mAkuListAdapter);
 
         //TODO ChildEventListener luodaan tÃ¤ssÃ¤
@@ -80,11 +80,16 @@ public class MainActivity extends AppCompatActivity {
             public void onChildAdded(DataSnapshot dataSnapshot, String s) {
                 Aku aku = dataSnapshot.getValue(Aku.class);
                 mAkuListAdapter.add(aku);
+                mAkuListAdapter.notifyDataSetChanged();
             }
             @Override
             public void onChildChanged(DataSnapshot dataSnapshot, String s) { }
             @Override
-            public void onChildRemoved(DataSnapshot dataSnapshot) { }
+            public void onChildRemoved(DataSnapshot dataSnapshot) {
+                Aku aku = dataSnapshot.getValue(Aku.class);
+                mAkuListAdapter.remove(aku);
+                mAkuListAdapter.notifyDataSetChanged();
+            }
             @Override
             public void onChildMoved(DataSnapshot dataSnapshot, String s) { }
             @Override
@@ -99,13 +104,13 @@ public class MainActivity extends AppCompatActivity {
             public void onAuthStateChanged(@NonNull FirebaseAuth firebaseAuth){
                 FirebaseUser user = firebaseAuth.getCurrentUser();
                 if(user != null){
-                    upDateUI(user);
+                    //upDateUI(user);
                 }else{
                     startActivityForResult(
                             AuthUI.getInstance()
                                     .createSignInIntentBuilder()
                                     .setProviders(
-                                            AuthUI.GOOGLE_PROVIDER
+                                            AuthUI.EMAIL_PROVIDER
                                             )
                                     .build(),
                                     RC_SIGN_IN);
@@ -135,6 +140,7 @@ public class MainActivity extends AppCompatActivity {
                 break;
             case R.id.delete:
                 Log.d("aku", "delete tuli");
+                //mMessagesDatabaseReference.child().removeValue();
                 Toast.makeText(this, "Painoit delete -nappia, ei vaikutusta!", Toast.LENGTH_SHORT).show();
                 break;
         }
@@ -148,25 +154,4 @@ public class MainActivity extends AppCompatActivity {
         hankinta.setText("");
     }
 
-    @Override
-    public void onStart(){
-        super.onStart();
-        FirebaseUser currentUser = mFirebaseAuth.getCurrentUser();
-        //updateUI(null);
-    }
-
-
-    @Override
-    protected void onResume(){
-        super.onResume();
-        mFirebaseAuth.addAuthStateListener(mAuthStateListener);
-    }
-
-    @Override
-    protected void onPause(){
-        super.onPause();
-        if(mAuthStateListener != null){
-            mFirebaseAuth.removeAuthStateListener(mAuthStateListener);
-        }
-    }
 }
