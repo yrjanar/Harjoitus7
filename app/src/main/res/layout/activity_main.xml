@@ -5,27 +5,31 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context="com.example.rauliyrjana.harjoitus7.MainActivity">
+
     <Button
         android:id="@+id/add"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="58dp"
+        android:layout_height="47dp"
         android:layout_marginStart="8dp"
-        android:layout_marginTop="8dp"
+        android:layout_marginTop="76dp"
+        android:layout_marginEnd="56dp"
         android:onClick="onClick"
-        android:text="Add New"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/editTextNimi" />
+        android:text="ADD"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.076"
+        app:layout_constraintStart_toEndOf="@+id/editTextNimi"
+        app:layout_constraintTop_toTopOf="parent" />
 
     <Button
         android:id="@+id/delete"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="8dp"
+        android:layout_width="58dp"
+        android:layout_height="47dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="76dp"
         android:onClick="onClick"
-        android:text="Delete First"
+        android:text="DEL"
         app:layout_constraintStart_toEndOf="@+id/add"
-        app:layout_constraintTop_toBottomOf="@+id/editTextNimi" />
+        app:layout_constraintTop_toTopOf="parent" />
 
 
     <EditText
@@ -68,8 +72,8 @@
         android:id="@+id/editTextPainos"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="36dp"
-        android:layout_marginTop="76dp"
+        android:layout_marginStart="44dp"
+        android:layout_marginTop="16dp"
         android:ems="5"
         android:hint="painos"
         android:inputType="number"
@@ -78,9 +82,11 @@
 
     <ListView
         android:id="@+id/mAkulistView"
-        android:layout_width="374dp"
-        android:layout_height="312dp"
-        android:layout_marginTop="190dp"
+        android:layout_width="376dp"
+        android:layout_height="232dp"
+        android:layout_marginTop="272dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
 </android.support.constraint.ConstraintLayout>

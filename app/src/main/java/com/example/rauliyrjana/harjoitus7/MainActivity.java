@@ -11,6 +11,7 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ListView;
 import android.widget.Toast;
@@ -23,20 +24,27 @@ import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import static android.R.id.message;
 
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
-//import static com.firebase.ui.auth.ui.AcquireEmailHelper.RC_SIGN_IN;
+import static com.firebase.ui.auth.ui.AcquireEmailHelper.RC_SIGN_IN;
 
 
 public class MainActivity extends AppCompatActivity {
+
+    private static final String TAG = "MainActivity";
     private EditText nro;
     private EditText nimi;
     private EditText hankinta;
     private EditText painos;
-    public static final int RC_SIGN_IN = 1;
+    private EditText mEmail;
+    private EditText mPassword;
+    private Button btnSignIn,btnSignOut,btnAddItems;
+
+    public static final int RC_SIGN_IN = 123;
 
     private ListView mAkuListView;
     private ArrayAdapter mAkuListAdapter;
@@ -63,6 +71,14 @@ public class MainActivity extends AppCompatActivity {
         mFirebaseDatabase = FirebaseDatabase.getInstance();
         mFirebaseAuth = FirebaseAuth.getInstance();
         mMessagesDatabaseReference = mFirebaseDatabase.getReference().child("akut");
+
+        mEmail = (EditText) findViewById(R.id.email);
+        mPassword = (EditText) findViewById(R.id.password);
+        //btnSignIn = (Button) findViewById(R.id.email_sign_in_button);
+        //btnSignOut = (Button) findViewById(R.id.email_sign_out_button);
+        //btnAddItems = (Button) findViewById(R.id.add_item_screen);
+
+
 
         nro=findViewById(R.id.editTextNumero);
         nimi=findViewById(R.id.editTextNimi);
@@ -117,6 +133,25 @@ public class MainActivity extends AppCompatActivity {
                 }
             }
         };
+
+        mAuthStateListener=new FirebaseAuth.AuthStateListener() {
+            @Override
+            public void onAuthStateChanged(@NonNull FirebaseAuth firebaseAuth) {
+                FirebaseUser user = firebaseAuth.getCurrentUser();
+                if(user!=null){
+                    //signed in
+
+                }else{
+                    //signed out
+                    //https://github.com/firebase/FirebaseUI-Android/tree/master/auth
+                    startActivityForResult(
+                            // Get an instance of AuthUI based on the default app
+                            AuthUI.getInstance().createSignInIntentBuilder().build(),
+                            RC_SIGN_IN);
+                }
+            }
+        };
+
     }
 
 
@@ -152,6 +187,19 @@ public class MainActivity extends AppCompatActivity {
         nimi.setText("");
         painos.setText("");
         hankinta.setText("");
+    }
+    @Override
+    protected void onResume(){
+        super.onResume();
+        mFirebaseAuth.addAuthStateListener(mAuthStateListener);
+    }
+
+    @Override
+    protected void onPause(){
+        super.onPause();
+        if(mAuthStateListener !=null){
+            mFirebaseAuth.removeAuthStateListener(mAuthStateListener);
+        }
     }
 
 }
